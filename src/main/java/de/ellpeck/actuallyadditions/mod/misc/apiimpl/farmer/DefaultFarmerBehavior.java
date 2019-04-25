@@ -16,6 +16,7 @@ import java.util.List;
 import de.ellpeck.actuallyadditions.api.farmer.FarmerResult;
 import de.ellpeck.actuallyadditions.api.farmer.IFarmerBehavior;
 import de.ellpeck.actuallyadditions.api.internal.IFarmer;
+import de.ellpeck.actuallyadditions.mod.util.ActuallyAdditionsFakePlayerFactory;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -166,7 +167,7 @@ public class DefaultFarmerBehavior implements IFarmerBehavior {
 
     public static EnumActionResult useHoeAt(World world, BlockPos pos) {
 
-        EntityPlayer player = FakePlayerFactory.getMinecraft((WorldServer) world);
+        EntityPlayer player = ActuallyAdditionsFakePlayerFactory.getDefault((WorldServer)world);
 
         ItemStack itemstack = getHoeStack();
 

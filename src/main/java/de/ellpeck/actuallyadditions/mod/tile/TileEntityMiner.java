@@ -13,6 +13,7 @@ package de.ellpeck.actuallyadditions.mod.tile;
 import de.ellpeck.actuallyadditions.mod.config.values.ConfigStringListValues;
 import de.ellpeck.actuallyadditions.mod.items.ItemDrill;
 import de.ellpeck.actuallyadditions.mod.network.gui.IButtonReactor;
+import de.ellpeck.actuallyadditions.mod.util.ActuallyAdditionsFakePlayerFactory;
 import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
 import de.ellpeck.actuallyadditions.mod.util.ItemStackHandlerAA.IAcceptor;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
@@ -126,7 +127,7 @@ public class TileEntityMiner extends TileEntityInventoryBase implements IButtonR
 
             IBlockState state = this.world.getBlockState(pos);
             Block block = state.getBlock();
-            ItemStack stack = block.getPickBlock(state, new RayTraceResult(Type.BLOCK, new Vec3d(0, 0, 0), EnumFacing.DOWN, pos), this.world, pos, FakePlayerFactory.getMinecraft((WorldServer) this.world));
+            ItemStack stack = block.getPickBlock(state, new RayTraceResult(Type.BLOCK, new Vec3d(0, 0, 0), EnumFacing.DOWN, pos), this.world, pos, ActuallyAdditionsFakePlayerFactory.get((WorldServer)this.getWorld(), this.getPos()));
             if (!block.isAir(this.world.getBlockState(pos), this.world, pos)) {
                 if (block.getHarvestLevel(this.world.getBlockState(pos)) <= ItemDrill.HARVEST_LEVEL && state.getBlockHardness(this.world, pos) >= 0F && !(block instanceof BlockLiquid) && !(block instanceof IFluidBlock) && this.isMinable(block, stack)) {
                     NonNullList<ItemStack> drops = NonNullList.create();

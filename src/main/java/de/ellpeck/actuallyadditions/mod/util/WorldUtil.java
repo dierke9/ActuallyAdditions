@@ -187,7 +187,7 @@ public final class WorldUtil {
 
             //Everything else
             try {
-                FakePlayer fake = FakePlayerFactory.getMinecraft((WorldServer) world);
+                FakePlayer fake = ActuallyAdditionsFakePlayerFactory.get((WorldServer) world, pos);
                 ItemStack heldBefore = fake.getHeldItemMainhand();
                 setHandItemWithoutAnnoyingSound(fake, EnumHand.MAIN_HAND, stack.copy());
                 fake.interactionManager.processRightClickBlock(fake, world, fake.getHeldItemMainhand(), EnumHand.MAIN_HAND, offsetPos, side.getOpposite(), 0.5F, 0.5F, 0.5F);
@@ -284,7 +284,7 @@ public final class WorldUtil {
     //I think something is up with this, but I'm not entirely certain what.
     public static float fireFakeHarvestEventsForDropChance(NonNullList<ItemStack> drops, World world, BlockPos pos) {
         if (world instanceof WorldServer) {
-            FakePlayer fake = FakePlayerFactory.getMinecraft((WorldServer) world);
+            FakePlayer fake = ActuallyAdditionsFakePlayerFactory.get((WorldServer) world, pos);
             IBlockState state = world.getBlockState(pos);
 
             BreakEvent event = new BreakEvent(world, pos, state, fake);

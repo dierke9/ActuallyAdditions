@@ -22,6 +22,7 @@ import de.ellpeck.actuallyadditions.api.internal.IMethodHandler;
 import de.ellpeck.actuallyadditions.api.lens.Lens;
 import de.ellpeck.actuallyadditions.api.recipe.CoffeeIngredient;
 import de.ellpeck.actuallyadditions.api.recipe.LensConversionRecipe;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.blocks.BlockLaserRelay;
 import de.ellpeck.actuallyadditions.mod.booklet.chapter.BookletChapter;
 import de.ellpeck.actuallyadditions.mod.booklet.chapter.BookletChapterTrials;
@@ -33,6 +34,7 @@ import de.ellpeck.actuallyadditions.mod.config.values.ConfigStringListValues;
 import de.ellpeck.actuallyadditions.mod.items.lens.LensRecipeHandler;
 import de.ellpeck.actuallyadditions.mod.recipe.CrusherRecipeRegistry;
 import de.ellpeck.actuallyadditions.mod.tile.TileEntityAtomicReconstructor;
+import de.ellpeck.actuallyadditions.mod.util.ActuallyAdditionsFakePlayerFactory;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -178,7 +180,7 @@ public class MethodHandler implements IMethodHandler{
                                     recipe.transformHook(ItemStack.EMPTY, state, pos, tile);
                                     if(output.getItem() instanceof ItemBlock){
                                         Block toPlace = Block.getBlockFromItem(output.getItem());
-                                        IBlockState state2Place = toPlace.getStateForPlacement(tile.getWorldObject(), pos, facing, 0, 0, 0, output.getMetadata(), FakePlayerFactory.getMinecraft((WorldServer) tile.getWorldObject()), EnumHand.MAIN_HAND);
+                                        IBlockState state2Place = toPlace.getStateForPlacement(tile.getWorldObject(), pos, facing, 0, 0, 0, output.getMetadata(), ActuallyAdditionsFakePlayerFactory.getDefault((WorldServer) tile.getWorldObject()), EnumHand.MAIN_HAND);
                                         tile.getWorldObject().setBlockState(pos, state2Place, 2);
                                     }
                                     else{

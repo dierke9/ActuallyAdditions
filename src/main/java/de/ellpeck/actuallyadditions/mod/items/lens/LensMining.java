@@ -17,6 +17,7 @@ import de.ellpeck.actuallyadditions.api.recipe.WeightedOre;
 import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import de.ellpeck.actuallyadditions.mod.config.values.ConfigStringListValues;
 import de.ellpeck.actuallyadditions.mod.recipe.CrusherRecipeRegistry;
+import de.ellpeck.actuallyadditions.mod.util.ActuallyAdditionsFakePlayerFactory;
 import de.ellpeck.actuallyadditions.mod.util.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNetherrack;
@@ -30,7 +31,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
@@ -165,7 +165,7 @@ public class LensMining extends Lens{
                     if(tile.getEnergy() >= adaptedUse){
                         Block block = Block.getBlockFromItem(stack.getItem());
                         if(block != Blocks.AIR){
-                            IBlockState state = block.getStateForPlacement(tile.getWorldObject(), hitPos, EnumFacing.UP, 0, 0, 0, stack.getMetadata(), FakePlayerFactory.getMinecraft((WorldServer) tile.getWorldObject()), EnumHand.MAIN_HAND);
+                            IBlockState state = block.getStateForPlacement(tile.getWorldObject(), hitPos, EnumFacing.UP, 0, 0, 0, stack.getMetadata(), ActuallyAdditionsFakePlayerFactory.get((WorldServer) tile.getWorldObject(), tile.getPosition()), EnumHand.MAIN_HAND);
                             tile.getWorldObject().setBlockState(hitPos, state, 2);
 
                             tile.getWorldObject().playEvent(2001, hitPos, Block.getStateId(state));
